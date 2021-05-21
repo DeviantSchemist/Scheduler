@@ -1,5 +1,9 @@
 // displays the time at the top of the calendar
-document.getElementById('currentDay').innerHTML = `Today is: ${moment().format("MMM Do YYYY")}, which is a ${moment().format('dddd')}`
+let update = function () {
+  document.getElementById('currentDay').innerHTML = moment().format('dddd') + ', ' + moment().format('MMMM Do YYYY, h:mm:ss a')
+}
+update()
+setInterval(update, 1000)
 
 // checks if there is anything in local storage and then displays it
 if (localStorage.length) {
