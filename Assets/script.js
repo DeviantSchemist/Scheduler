@@ -7,7 +7,7 @@ setInterval(update, 1000)
 
 // checks if there is anything in local storage and then displays it
 if (localStorage.length) {
-  for (let i = 9; i <= 17; i++) {
+  for (let i = parseInt($('div.container:first-child').attr('id').split('hour-')[1]); i <= parseInt($('div.container:last-child').attr('id').split('hour-')[1]); i++) {
     $('#hour-' + i + ' .description').val(localStorage.getItem('hour-' + i))
   }
 }
