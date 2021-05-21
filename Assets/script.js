@@ -1,3 +1,6 @@
+// displays the time at the top of the calendar
+document.getElementById('currentDay').innerHTML = `Today is: ${moment().format("MMM Do YYYY")}, which is a ${moment().format('dddd')}`
+
 // checks if there is anything in local storage and then displays it
 if (localStorage.length) {
   for (let i = 9; i <= 17; i++) {
@@ -5,6 +8,7 @@ if (localStorage.length) {
   }
 }
 
+// color codes the time blocks based on the current hour
 let currentHour = moment().hour(), elementHour
 jQuery.each($('.time-block'), function() {
   elementHour = parseInt($(this).attr('id').split('hour-')[1])
@@ -17,7 +21,7 @@ jQuery.each($('.time-block'), function() {
     $(this).removeClass('past future')
     $(this).addClass('present')
   }
-  else {
+  else if (elementHour > currentHour) {
     $(this).removeClass('present past')
     $(this).addClass('future')
   }
@@ -29,9 +33,3 @@ document.addEventListener('click', event => {
     localStorage.setItem(event.target.parentNode.id, $(event.target).siblings('.description').val())
   }
 })
-
-// $(".time-block").each(function() {
-//   console.log(parseInt($(this).attr('id').split('hour-')[1]))
-//   // let elemTime = $(this).attr("id").split("hour-")[1]
-
-// })
